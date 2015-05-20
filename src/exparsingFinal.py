@@ -130,8 +130,8 @@ if __name__ == '__main__':
     
     url = "http://table.finance.yahoo.com/table.csv?s=%s.%s" % (number, region)
     data = []
-    path = 'data/%s'
-    filename = "%s.%s" % (number, region)
+    path = 'data/sz/%s'
+    filename = "%s_%s.csv" % (number, region)
 
     with open(path % filename) as f:
         lines = f.readlines()
@@ -192,7 +192,7 @@ if __name__ == '__main__':
         # total assets
         total_assets = sell_money
         timestamp = time.mktime(
-            datetime.strptime(i[0]['date'], '%Y/%m/%d').timetuple()) * 1000
+            datetime.strptime(i[0]['date'], '%Y-%m-%d').timetuple()) * 1000
         curve_data.append([int(timestamp), total_assets])
         stock.append([int(timestamp), today_close])
         last_close = today_close

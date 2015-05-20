@@ -84,9 +84,40 @@
             <select class="form-control" id="stockId">
               <option>000001.sz</option>
               <option>000002.sz</option>
-              <option>000003.sz</option>
               <option>000004.sz</option>
               <option>000005.sz</option>
+              <option>000006.sz</option>
+              <option>000007.sz</option>
+              <option>000008.sz</option>
+              <option>000009.sz</option>
+              <option>000010.sz</option>
+              <option>000012.sz</option>
+              <option>000014.sz</option>
+              <option>000016.sz</option>
+              <option>000017.sz</option>
+              <option>000018.sz</option>
+              <option>000019.sz</option>
+              <option>000020.sz</option>
+              <option>000021.sz</option>
+              <option>000022.sz</option>
+              <option>000023.sz</option>
+              <option>000024.sz</option>
+              <option>000025.sz</option>
+              <option>000026.sz</option>
+              <option>000027.sz</option>
+              <option>000028.sz</option>
+              <option>000029.sz</option>
+              <option>000031.sz</option>
+              <option>000032.sz</option>
+              <option>000033.sz</option>
+              <option>000034.sz</option>
+              <option>000035.sz</option>
+              <option>000036.sz</option>
+              <option>000037.sz</option>
+              <option>000039.sz</option>
+              <option>000043.sz</option>
+              <option>000045.sz</option>
+              <option>000046.sz</option>
             </select>
           </div>
         </form>
@@ -125,7 +156,15 @@
         
         $(function () {
             $.getJSON('getData.php', {exp: code, type: type, stock: stock}, function (data) {
-                
+                var isValid = data.isValid;
+                var error = data.error;
+                if (isValid == false) {
+                    alert("avc");
+                    warningobj = $.ajax({url:"warning.php",async:false});
+                    $("#result").html(warningobj.responseText);
+                    $("#warning").html(error);
+                }
+                else {
                 // Create the chart
                 $('#result').highcharts('StockChart', {
                     rangeSelector: {
@@ -197,7 +236,7 @@
                         data: data.data2,
                         yAxis: 1,
                     }]
-                });
+                });}
             });
         });
     }
