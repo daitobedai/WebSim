@@ -113,11 +113,7 @@
               <option>000034.sz</option>
               <option>000035.sz</option>
               <option>000036.sz</option>
-              <option>000037.sz</option>
-              <option>000039.sz</option>
-              <option>000043.sz</option>
-              <option>000045.sz</option>
-              <option>000046.sz</option>
+              <?php require 'stockSelect.php'; ?>
             </select>
           </div>
         </form>
@@ -172,7 +168,7 @@
                     },
 
                     title: {
-                        text: 'Back Test Result'
+                        text: 'Back Test Result of ' + stock
                     },
 
                     scrollbar: {
