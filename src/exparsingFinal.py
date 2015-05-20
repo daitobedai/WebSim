@@ -1,5 +1,5 @@
 # coding: utf-8
-import sys
+from sys import argv as sys_argv
 from datetime import datetime
 import time
 import json
@@ -120,18 +120,15 @@ if __name__ == '__main__':
             "   return res_list\n"\
             "res = f(context)\n"
 
-        number = '000403'
-        region = 'sz'
+        number = '000403_sz'
     else:
-        sim_type = sys.argv[1]
-        exp = program = sys.argv[2]
-        number = sys.argv[3]
-        region = sys.argv[4]
-    
-    url = "http://table.finance.yahoo.com/table.csv?s=%s.%s" % (number, region)
+        sim_type = sys_argv[1]
+        exp = program = sys_argv[2]
+        number = sys_argv[3]
+
     data = []
     path = 'data/sz/%s'
-    filename = "%s_%s.csv" % (number, region)
+    filename = "%s.csv" % number
 
     with open(path % filename) as f:
         lines = f.readlines()
@@ -155,7 +152,7 @@ if __name__ == '__main__':
         try:
             res = parsing_expr(data, exp)
         except Exception, ex:
-            print json.demps({'isValid': False, 'error': str(ex)})
+            print json.dumps({'isValid': False, 'error': str(ex)})
             exit(0)
     else:
         try:
