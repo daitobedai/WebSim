@@ -5,10 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="709@ZJU">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Theme Template for Bootstrap</title>
+    <title>Simple Web Sim</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -53,7 +53,7 @@
 
     <div class="container">
       <div class="page-header">
-        <h1 class="text-center">The Web Sim <small>made by 709 ZJU</small></h1>
+        <h1 class="text-center">The Web Sim <small>made by 709@ZJU</small></h1>
         <p class="text-center">Make your own algorithms below</p>
       </div>
 
@@ -61,7 +61,7 @@
         <div class="input-group input-group-lg">
           <input type="text" class="form-control" id="code" placeholder="Your algorithm...">
           <span class="input-group-btn">
-            <button class="btn btn-default" type="button" onclick="backTest()">Go!</button>
+            <button class="btn btn-default" type="button" id="go" onclick="backTest()">Go!</button>
           </span>
         </div><!-- /input-group -->
       </div>
@@ -136,6 +136,7 @@
     function backTest() {
         htmlobj=$.ajax({url:"panel.php",async:false});
         $("#content").html(htmlobj.responseText);
+        $('#result').html('<h4>waiting...</h4>');
 
         var title = "";
         var code = document.getElementById("code").value;
@@ -236,8 +237,16 @@
             });
         });
     }
-	</script>
 
+    var goButton = document.getElementById('go');
+    function keyList(e)
+    {
+        //alert(e.keyCode);
+        if (e.keyCode == 13)
+            goButton.onclick(); 
+    }
+    document.onkeydown = keyList;
+	</script>
   </body>
 </html>
 
